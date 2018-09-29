@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Demo</title>
-    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/font-awesome-all.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jopper.js"></script>
 </head>
 <body>
-<i style="font-size: 30pt" class="fas fa-user"></i> <!-- uses solid style -->
-<i style="font-size: 30pt" class="far fa-user"></i> <!-- uses regular style -->
-<i style="font-size: 30pt" class="fab fa-github-square"></i> <!-- uses brands style -->
+
+<div data-jopper='{
+  "resource": "resources/book",
+  "properties": ["id", "name", "author"]
+}'></div>
+
 </body>
 </html>
