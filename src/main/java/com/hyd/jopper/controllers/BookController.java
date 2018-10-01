@@ -19,17 +19,21 @@ public class BookController {
     @GetMapping("/list")
     public ResourceList<Book> listBooks() {
         List<Book> list = Arrays.asList(
-                new Book(1, "book1", "author1"),
-                new Book(2, "book2", "author2"),
-                new Book(3, "book3", "author3")
+                new Book(1, "设计模式", "可复用面向对象软件的基础",
+                        "Erich Gamma / Richard Helm / Ralph Johnson / John Vlissides"),
+                new Book(2, "重构", "改善既有代码的设计", "Martin Fowler"),
+                new Book(3, "敏捷软件开发", "原则、模式与实践", "Robert C·Martin")
         );
 
         return new ResourceList<Book>()
                 .setList(list)
                 .setRenderingInfo(
                         new TableRenderingInfo()
-                                .addColumn("书名", "name")
+                                .addColumn("书名", "mainTitle")
+                                .addColumn("副标题", "secondTitle")
                                 .addColumn("作者", "author")
+                                .addOperation("编辑", "edit")
+                                .addOperation("删除", "delete")
                 );
     }
 }

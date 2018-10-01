@@ -1,8 +1,21 @@
 table.datatable thead tr {
-    background: #000;
+    background: #005297;
     color: white;
 }
 
 table.datatable thead td {
     padding: 0.2em 0.5em;
+}
+
+table.datatable tbody td.data {
+    color: #005297;
+    padding-right: 1em;
+}
+
+table.datatable tbody tr:hover {
+    background: #b4e7ff;
+}
+
+button {
+    cursor: pointer;
 }
