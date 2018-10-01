@@ -2,7 +2,6 @@ package com.hyd.jopper.controllers;
 
 import com.hyd.jopper.Book;
 import com.hyd.jopper.meta.RenderingInfo;
-import com.hyd.jopper.meta.RenderingType;
 import com.hyd.jopper.meta.ResourceList;
 import com.hyd.jopper.meta.TableRenderingInfo;
 import org.springframework.web.bind.annotation.GetMapping;

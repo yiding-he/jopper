@@ -10,6 +10,4 @@ import java.util.List;
 public class ResourceList<T> {
 
     private List<T> list;
-
-    private RenderingInfo renderingInfo;
 }
