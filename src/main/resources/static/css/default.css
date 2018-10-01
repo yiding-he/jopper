@@ -1,0 +1,8 @@
+table.datatable thead tr {
+    background: #000;
+    color: white;
+}
+
+table.datatable thead td {
+    padding: 0.2em 0.5em;
+}
