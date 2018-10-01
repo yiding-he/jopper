@@ -9,5 +9,5 @@ public class ResourceInfo<T> {
 
     private T data;
 
-    private RenderingInfo renderingInfo;
+    private RenderOptions renderOptions;
 }

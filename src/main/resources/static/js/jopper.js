@@ -65,6 +65,12 @@ var Jopper = function () {
             .append($('<tbody>'));
         element.data('jopper-data-table', table);
         element.append(table);
+
+        ////////////////////////////////////////////////////////////////////////////////
+
+        if (meta.queryForm) {
+
+        }
     };
 
     var renderResourceList = function (resourcePath, resourceList, element) {
