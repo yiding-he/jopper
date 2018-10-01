@@ -3,6 +3,7 @@ $(function () {
 });
 
 var Jopper = function () {
+
     this.initJopper = function () {
         $('[data-jopper]').each(function () {
             initJopperElement($(this));
@@ -24,25 +25,32 @@ var Jopper = function () {
         var definition = JSON.parse(text);
         var resourcePath = definition.resource;
 
-        $.get(resourcePath + "/list", {}, function (resourceList) {
-            renderResourceList(resourcePath, resourceList, element);
+        $.get(resourcePath + "/meta", {}, function (meta) {
+            renderMeta(element, meta);
+
+            if (meta.autoQuery) {
+                $.get(resourcePath + "/list", {}, function (resourceList) {
+                    renderResourceList(resourcePath, resourceList, element);
+                });
+            }
         });
     };
 
-    var renderResourceList = function (resourcePath, resourceList, element) {
-        var renderingType = resourceList.renderingInfo.renderingType;
+    function renderMeta(element, meta) {
+        element.data('jopper-meta', meta);
+
+        var renderingType = meta.renderingType;
         if (renderingType === "Table") {
-            renderTableResourceList(resourcePath, resourceList, element);
+            renderMetaTable(element, meta);
         } else {
             log('Rendering type "' + renderingType + '" not implemented.')
         }
-    };
+    }
 
-    var renderTableResourceList = function (resourcePath, resourceList, element) {
-
+    var renderMetaTable = function (element, meta) {
         var theadRow = $('<tr>');
-        var columns = resourceList.renderingInfo.columns;
-        var operations = resourceList.renderingInfo.operations;
+        var columns = meta.columns;
+        var operations = meta.operations;
 
         $.each(columns, function (i, column) {
             theadRow.append($('<td>').html(column.name));
@@ -52,8 +60,32 @@ var Jopper = function () {
             theadRow.append($('<td>').html("&nbsp;"));
         }
 
-        var thead = $('<thead>').append(theadRow);
-        var tbody = $('<tbody>');
+        var table = $('<table>').addClass('datatable')
+            .append($('<thead>').append(theadRow))
+            .append($('<tbody>'));
+        element.data('jopper-data-table', table);
+        element.append(table);
+    };
+
+    var renderResourceList = function (resourcePath, resourceList, element) {
+        var meta = element.data('jopper-meta');
+        var renderingType = meta.renderingType;
+
+        if (renderingType === "Table") {
+            renderTableResourceList(resourcePath, resourceList, element);
+        } else {
+            log('Rendering type "' + renderingType + '" not implemented.')
+        }
+    };
+
+    var renderTableResourceList = function (resourcePath, resourceList, element) {
+
+        var meta = element.data('jopper-meta');
+        var columns = meta.columns;
+        var operations = meta.operations;
+
+        var tbody = element.data('jopper-data-table').children('tbody');
+        tbody.empty();
 
         $.each(resourceList.list, function (i, resource) {
             var tbodyRow = $('<tr>').appendTo(tbody);
@@ -72,9 +104,5 @@ var Jopper = function () {
                 });
             }
         });
-
-        var table = $('<table>').addClass('datatable').append(thead).append(tbody);
-
-        $(element).append(table)
     };};
 

@@ -16,6 +16,17 @@ import java.util.List;
 @RestController
 public class BookController {
 
+    @GetMapping("/meta")
+    public RenderingInfo bookMeta() {
+        return new TableRenderingInfo()
+                .addColumn("书名", "mainTitle")
+                .addColumn("副标题", "secondTitle")
+                .addColumn("作者", "author")
+                .addOperation("编辑", "edit")
+                .addOperation("删除", "delete")
+                .setAutoQuery(true);
+    }
+
     @GetMapping("/list")
     public ResourceList<Book> listBooks() {
         List<Book> list = Arrays.asList(
@@ -25,15 +36,6 @@ public class BookController {
                 new Book(3, "敏捷软件开发", "原则、模式与实践", "Robert C·Martin")
         );
 
-        return new ResourceList<Book>()
-                .setList(list)
-                .setRenderingInfo(
-                        new TableRenderingInfo()
-                                .addColumn("书名", "mainTitle")
-                                .addColumn("副标题", "secondTitle")
-                                .addColumn("作者", "author")
-                                .addOperation("编辑", "edit")
-                                .addOperation("删除", "delete")
-                );
+        return new ResourceList<Book>().setList(list);
     }
 }
