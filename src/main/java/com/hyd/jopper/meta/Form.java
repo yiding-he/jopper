@@ -11,9 +11,17 @@ import java.util.List;
 @Data
 public class Form {
 
-    private String resource;
+    private String method = "get";
 
-    private String operation;
+    private Operation operation;
 
     private List<FormField> fields = new ArrayList<>();
+
+    public void addField(FormField formField) {
+        this.fields.add(formField);
+    }
+
+    public void setOperation(String name, String key) {
+        setOperation(new Operation(name, key));
+    }
 }

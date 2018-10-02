@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -34,15 +35,9 @@ public class TableRenderOptions extends RenderOptions {
         return this;
     }
 
-    public TableRenderOptions enableForm() {
+    public TableRenderOptions enableForm(Consumer<Form> formConsumer) {
         this.queryForm = new Form();
-        return this;
-    }
-
-    public TableRenderOptions addFormField(FormField formField) {
-        if (this.queryForm != null) {
-            this.queryForm.getFields().add(formField);
-        }
+        formConsumer.accept(this.queryForm);
         return this;
     }
 

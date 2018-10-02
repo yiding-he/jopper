@@ -11,6 +11,10 @@ import lombok.EqualsAndHashCode;
 @Data
 public class Category extends NamedKey {
 
+    public static final Category ALL = new Category("（全部）", "");
+
+    private int id;
+
     public Category() {
     }
 

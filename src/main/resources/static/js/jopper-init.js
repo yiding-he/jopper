@@ -7,6 +7,7 @@ var Jopper = function (element) {
     };
 
     this.meta = null;
+    this.resource = null;
     this.element = element;
     this.renderer = null;
 
@@ -34,6 +35,8 @@ var Jopper = function (element) {
         var resourcePath = definition.resource;
         var jopper = this;
 
+        this.resource = resourcePath;
+
         $.get(resourcePath + "/meta", {}, function (metaData) {
             jopper.meta = metaData;
 
@@ -47,19 +50,19 @@ var Jopper = function (element) {
 
             jopper.renderer.renderMeta();
             if (jopper.meta.autoQuery) {
-                $.get(resourcePath + "/list", {}, function (data) {
-                    jopper.renderElementData(resourcePath, data);
+                $.get(resourcePath + "/query", {}, function (data) {
+                    jopper.renderElementData(data);
                 });
             }
         });
     };
 
-    this.renderElementData = function (resourcePath, data) {
+    this.renderElementData = function (data) {
         if (!this.renderer) {
             return;
         }
 
-        this.renderer.renderData(resourcePath, data);
+        this.renderer.renderData(data);
     };
 };
 

@@ -18,4 +18,8 @@ public class CategoryRepository {
     public List<Category> findAll() {
         return dao.query(Category.class, "select * from categories");
     }
+
+    public Category findOne(String key) {
+        return dao.queryFirst(Category.class, "select * from categories where key=?", key);
+    }
 }

@@ -40,4 +40,14 @@ public class ListFormField<T extends NamedKey> extends FormField {
     }
 
     private List<T> options;
+
+    public ListFormField<T> addOption(T option) {
+        this.options.add(option);
+        return this;
+    }
+
+    public ListFormField<T> addOption(int position, T option) {
+        this.options.add(position, option);
+        return this;
+    }
 }
