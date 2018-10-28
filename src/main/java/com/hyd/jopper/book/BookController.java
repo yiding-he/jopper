@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequestMapping("/resources/book")
 @RestController
@@ -40,16 +42,23 @@ public class BookController {
     }
 
     @GetMapping("/query")
-    public ResourceList<Book> queryBooks(HttpServletRequest request) {
+    public ResourceList queryBooks(HttpServletRequest request) {
 
         String titleKeyword = request.getParameter("title");
         String category = request.getParameter("category");
 
-        List<Book> list = bookRepository.findAll(titleKeyword, category);
-        list.forEach(book -> {
+        List<Book> bookList = bookRepository.findAll(titleKeyword, category);
+
+        List<List<String>> resourceList = bookList.stream().map(book -> {
             String categoryName = categoryRepository.findOne(book.getCategory()).getName();
-            book.setCategory(categoryName);
-        });
-        return new ResourceList<Book>().setList(list);
+            List<String> row = new ArrayList<>();
+            row.add(book.getMainTitle());
+            row.add(book.getSecondTitle());
+            row.add(book.getAuthor());
+            row.add(categoryName);
+            return row;
+        }).collect(Collectors.toList());
+
+        return new ResourceList().setList(resourceList);
     }
 }

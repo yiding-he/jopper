@@ -1,18 +1,18 @@
-table.datatable thead tr {
+table thead tr {
     background: #005297;
     color: white;
 }
 
-table.datatable thead td {
+table thead td {
     padding: 0.2em 0.5em;
 }
 
-table.datatable tbody td.data {
+table tbody td.data {
     color: #005297;
     padding-right: 1em;
 }
 
-table.datatable tbody tr:hover {
+table tbody tr:hover {
     background: #b4e7ff;
 }
 

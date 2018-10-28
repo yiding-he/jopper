@@ -5,16 +5,16 @@
     <title>Demo</title>
     <link rel="stylesheet" href="css/font-awesome-all.css">
     <link rel="stylesheet" href="css/default.css">
-    <script src="js/jquery-3.3.1.min.js"></script>
-
-    <script src="js/jopper-init.js"></script>
-    <script src="js/jopper-table-renderer.js"></script>
-    <script src="js/jopper-form-renderer.js"></script>
+    <script src="js/axios.js"></script>
+    <script src="js/vue.js"></script>
     <script src="js/jopper.js"></script>
+    <script src="js/jopper-table.js"></script>
 </head>
 <body>
 
-<div data-jopper='{ "resource": "resources/book" }'></div>
+<jopper-table resource="book"
+              :columns="columns" :rows="rows"
+              :operations="operations" :query-form="queryForm"></jopper-table>
 
 </body>
 </html>

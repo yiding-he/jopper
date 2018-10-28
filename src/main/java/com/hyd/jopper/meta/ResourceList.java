@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @Accessors(chain = true)
-public class ResourceList<T> {
+public class ResourceList {
 
-    private List<T> list;
+    private List<List<String>> list;
 }
