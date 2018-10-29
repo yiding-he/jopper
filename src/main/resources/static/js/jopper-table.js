@@ -1,11 +1,11 @@
 Vue.component('jopper-table', {
     props: {
-        resource: String,
-        columns: Array,
-        operations: Array,
-        rows: Array,
-        queryForm: Object,
-        others: Array
+        resource: {type: String, default() {return ''}},
+        columns: {type: Array, default() {return []}},
+        operations: {type: Array, default() {return []}},
+        rows: {type: Array, default() {return []}},
+        queryForm: {type: Object, default() {return {}}},
+        others: {type: Array, default() {return []}}
     },
     template: `<div class="jopper-table">
     <table>

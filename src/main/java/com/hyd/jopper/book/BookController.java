@@ -25,7 +25,7 @@ public class BookController {
     public RenderOptions bookMeta() {
         return new TableRenderOptions()
                 .addColumn("书名", "mainTitle")
-                .addColumn("副标题", "secondTitle")
+                // .addColumn("副标题", "secondTitle")
                 .addColumn("作者", "author")
                 .addColumn("类型", "category")
                 .addOperation("编辑", "edit")
@@ -53,7 +53,7 @@ public class BookController {
             String categoryName = categoryRepository.findOne(book.getCategory()).getName();
             List<String> row = new ArrayList<>();
             row.add(book.getMainTitle());
-            row.add(book.getSecondTitle());
+            // row.add(book.getSecondTitle());
             row.add(book.getAuthor());
             row.add(categoryName);
             return row;
