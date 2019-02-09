@@ -30,6 +30,11 @@ public class TableRenderOptions extends RenderOptions {
         return this;
     }
 
+    public TableRenderOptions addOperation(String name, String key, String icon) {
+        this.operations.add(new Operation(name, key, icon));
+        return this;
+    }
+
     public TableRenderOptions addOperations(Operation... operations) {
         this.operations.addAll(Arrays.asList(operations));
         return this;

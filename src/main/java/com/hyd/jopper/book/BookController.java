@@ -28,8 +28,8 @@ public class BookController {
                 // .addColumn("副标题", "secondTitle")
                 .addColumn("作者", "author")
                 .addColumn("类型", "category")
-                .addOperation("编辑", "edit")
-                .addOperation("删除", "delete")
+                .addOperation("编辑", "edit", "fas fa-pen")
+                .addOperation("删除", "delete", "fas fa-trash-alt")
                 .enableForm(form -> {
                     form.setOperation("查询", "query");
                     form.addField(TextFormField.create("书名", "title"));

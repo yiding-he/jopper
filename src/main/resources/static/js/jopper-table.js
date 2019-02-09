@@ -28,18 +28,21 @@ Vue.component('jopper-table', {
         }
     },
     template: `<div class="jopper-table">
-    <table>
+    <table class="table">
         <thead>
         <tr>
-            <td v-for="column in columns" :key="column.key">{{ column.name }}</td>
-            <td v-show="hasOperations()"></td>
+            <th v-for="column in columns" :key="column.key">{{ column.name }}</th>
+            <th v-show="hasOperations()"></th>
         </tr>
         </thead>
         <tbody>
             <tr v-for="row in rows">
                 <td v-for="cell in row">{{ cell }}</td>
                 <td v-show="hasOperations">
-                    <button v-for="operation in operations">{{ operation.name }}</button>
+                    <button  class="btn btn-primary btn-sm mr-1" v-for="operation in operations">
+                    <i v-if="operation.icon" :class="operation.icon"></i>
+                    {{ operation.icon? '': operation.name }}
+                    </button>
                 </td>
             </tr>
         </tbody>

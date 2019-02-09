@@ -3,8 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Demo</title>
+    <style>
+        @font-face {
+            font-family: 'Font Awesome 5 Free';
+            font-style: normal;
+            font-weight: 900;
+            src: url("webfonts/fa-solid-900.eot");
+            src: url("webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),
+                 url("webfonts/fa-solid-900.woff2") format("woff2"),
+                 url("webfonts/fa-solid-900.woff") format("woff"),
+                 url("webfonts/fa-solid-900.ttf") format("truetype"),
+                 url("webfonts/fa-solid-900.svg#fontawesome") format("svg");
+        }
+    </style>
     <link rel="stylesheet" href="css/font-awesome-all.css">
     <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <script src="js/axios.js"></script>
     <script src="js/vue.js"></script>
     <script src="js/jopper.js"></script>
@@ -12,7 +29,13 @@
 </head>
 <body>
 
-<jopper-table resource="book"></jopper-table>
+<div class="container">
+    <div class="row justify-content-start">
+        <div class="col-4">
+            <jopper-table resource="book"></jopper-table>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
