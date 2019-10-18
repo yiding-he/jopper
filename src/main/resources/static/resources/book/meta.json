@@ -1,0 +1,35 @@
+{
+  "autoQuery": true,
+  "columns": [
+    {
+      "name": "书名",
+      "key": "mainTitle",
+      "format": null
+    },
+    {
+      "name": "作者",
+      "key": "author",
+      "format": null
+    },
+    {
+      "name": "类型",
+      "key": "categoryName",
+      "format": null
+    }
+  ],
+  "operations": [
+    {
+      "name": "编辑",
+      "key": "edit",
+      "icon": "fas fa-pen",
+      "action": "editBook(this.id)"
+    },
+    {
+      "name": "删除",
+      "key": "delete",
+      "icon": "fas fa-trash-alt",
+      "action": "deleteBook(this.id)"
+    }
+  ],
+  "renderingType": "Table"
+}

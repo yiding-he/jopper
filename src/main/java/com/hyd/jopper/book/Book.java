@@ -1,8 +1,6 @@
 package com.hyd.jopper.book;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
@@ -12,6 +10,8 @@ public class Book {
     private long id;
 
     private String category;
+
+    private String categoryName;
 
     private String mainTitle;
 

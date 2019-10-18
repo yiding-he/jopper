@@ -1,33 +1,28 @@
 Vue.component('jopper-table', {
-    props: {
-        resource: {type: String, default: ''},
-        columns: {
-            type: Array, default() {
-                return [{name: "表格加载中...", key: ''}]
-            }
-        },
-        operations: {
-            type: Array, default() {
-                return []
-            }
-        },
-        rows: {
-            type: Array, default() {
-                return []
-            }
-        },
-        queryForm: {
-            type: Object, default() {
-                return {}
-            }
-        },
-        autoQuery: {
-            type: Object, default() {
-                return {value: false}
-            }
-        }
+  props: {
+    resource: {type: String, default: ''},
+    columns: {
+      type: Array, default() {
+        return [{name: "表格加载中...", key: ''}]
+      }
     },
-    template: `<div class="jopper-table">
+    operations: {
+      type: Array, default() {
+        return []
+      }
+    },
+    rows: {
+      type: Array, default() {
+        return []
+      }
+    },
+    autoQuery: {
+      type: Object, default() {
+        return {value: false}
+      }
+    }
+  },
+  template: `<div class="jopper-table">
     <table class="table">
         <thead>
         <tr>
@@ -37,9 +32,11 @@ Vue.component('jopper-table', {
         </thead>
         <tbody>
             <tr v-for="row in rows">
-                <td v-for="cell in row">{{ cell }}</td>
+                <td v-for="column in columns" :key="column.key">{{ row[column.key] }}</td>
                 <td v-show="hasOperations">
-                    <button  class="btn btn-primary btn-sm mr-1" v-for="operation in operations">
+                    <button class="btn btn-primary btn-sm mr-1"
+                    @click="doOperation(operation, row)" 
+                    v-for="operation in operations">
                     <i v-if="operation.icon" :class="operation.icon"></i>
                     {{ operation.icon? '': operation.name }}
                     </button>
@@ -49,37 +46,46 @@ Vue.component('jopper-table', {
     </table>
 </div>
 `,
-    mounted() {
-        let vm = this;
-        let metaUrl = 'resources/' + this.resource + "/meta";
-        let queryUrl = 'resources/' + this.resource + "/query";
-        axios.get(metaUrl)
-            .then(function (response) {
-                Jopper.setArray(vm, 'columns', response.data.columns);
-                Jopper.setArray(vm, 'operations', response.data.operations);
-                vm.autoQuery.value = response.data.autoQuery;
-            })
-            .then(function () {
-                if (!vm.autoQuery.value) {
-                    return;
-                }
-
-                axios.get(queryUrl)
-                    .then(function (response) {
-                        Jopper.setArray(vm, 'rows', response.data.list);
-                    })
-            });
+  mounted() {
+    let vm = this;
+    let metaUrl = 'resources/' + this.resource + "/meta.json";
+    let queryUrl = 'resources/' + this.resource + "/query";
+    axios.get(metaUrl)
+    .then(function (response) {
+      Jopper.setArray(vm, 'columns', response.data.columns);
+      Jopper.setArray(vm, 'operations', response.data.operations);
+      vm.autoQuery.value = response.data.autoQuery;
+    })
+    .then(function () {
+      vm.loadData();
+    });
+  },
+  methods: {
+    loadData() {
+      let vm = this;
+      if (!vm.autoQuery.value) {
+        return;
+      }
+      let queryUrl = 'resources/' + this.resource + "/query";
+      axios.get(queryUrl).then(function (response) {
+        Jopper.setArray(vm, 'rows', response.data.list);
+      })
     },
-    methods: {
-        hasOperations() {
-            return this.operations && this.operations.length > 0;
-        },
+    hasOperations() {
+      return this.operations && this.operations.length > 0;
+    },
+    doOperation(operation, row) {
+      var f = function () {
+        eval(operation.action);
+      };
+      f.apply(row);
     }
+  }
 });
 
 window.onReady(function () {
-    let elementName = 'jopper-table';
-    document.querySelectorAll(elementName).forEach(function (elem) {
-        window.vm = new Vue({el: elem});
-    });
+  let elementName = 'jopper-table';
+  document.querySelectorAll(elementName).forEach(function (elem) {
+    window.vm = new Vue({el: elem});
+  });
 });

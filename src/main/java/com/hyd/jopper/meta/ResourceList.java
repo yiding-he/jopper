@@ -1,13 +1,12 @@
 package com.hyd.jopper.meta;
 
+import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.util.List;
-
 @Data
 @Accessors(chain = true)
-public class ResourceList {
+public class ResourceList<T> {
 
-    private List<List<String>> list;
+    private List<T> list;
 }
