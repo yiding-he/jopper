@@ -28,6 +28,6 @@ public class BookController {
             book.setCategoryName(categoryName);
         });
 
-        return new ResourceList<Book>().setList(bookList);
+        return new ResourceList<Book>().setList(bookList).setTotalPage(5);
     }
 }

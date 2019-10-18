@@ -9,4 +9,6 @@ import lombok.experimental.Accessors;
 public class ResourceList<T> {
 
     private List<T> list;
+
+    private int totalPage;
 }

@@ -9,3 +9,9 @@
   url("webfonts/fa-solid-900.ttf") format("truetype"),
   url("webfonts/fa-solid-900.svg#fontawesome") format("svg");
 }
+
+.jopper-table .page-indicator>a {
+  border: 1px solid #AAAAAA;
+  padding: 3pt 8pt;
+  margin-right: 15pt;
+}

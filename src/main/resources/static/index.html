@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>Demo</title>
+
   <link rel="stylesheet" href="css/font-awesome-all.css">
   <link rel="stylesheet" href="css/default.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
   <script src="js/axios.js"></script>
   <script src="js/vue.js"></script>
   <script src="js/jopper.js"></script>
   <script src="js/jopper-table.js"></script>
   <script>
-    var editBook = function (bookId) {
+    const editBook = function (bookId) {
       alert("编辑记录 ‘" + bookId + "’");
     };
-    var deleteBook = function (bookId) {
+    const deleteBook = function (bookId) {
       alert("删除记录‘" + bookId + "’");
     };
   </script>
@@ -27,7 +30,7 @@
 <div class="container">
   <div class="row justify-content-start">
     <div class="col-8">
-      <jopper-table resource="book"></jopper-table>
+      <jopper-table id="book-table" resource="book"></jopper-table>
     </div>
   </div>
 </div>

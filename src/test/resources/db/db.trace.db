@@ -185,3 +185,6 @@ WHERE "KEY" = '' [42122-199]
 	at org.h2.server.web.WebThread.process(WebThread.java:173)
 	at org.h2.server.web.WebThread.run(WebThread.java:93)
 	at java.lang.Thread.run(Thread.java:748)
+2019-10-18 22:28:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT RANGE_WRAPPER.* FROM (SELECT * FROM CATEGORIES WHERE KEY=?) RANGE_WRAPPER OFFSET 0 LIMIT[*] 1 "; SQL statement:
+select range_wrapper.* from (select * from categories where key=?) range_wrapper offset 0 limit 1 [42000-199]
