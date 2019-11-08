@@ -1,8 +1,6 @@
-package com.hyd.jopper.book;
+package com.sampleapp.book;
 
 import com.hyd.dao.DAO;
-import com.hyd.dao.SQL;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

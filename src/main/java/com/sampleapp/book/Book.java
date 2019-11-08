@@ -1,4 +1,4 @@
-package com.hyd.jopper.book;
+package com.sampleapp.book;
 
 import lombok.*;
 

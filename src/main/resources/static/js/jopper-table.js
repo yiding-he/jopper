@@ -1,11 +1,6 @@
 Vue.component('jopper-table', {
   props: {
     resource: {type: String, default: ''},
-    totalPage: {
-      type: Object, default() {
-        return 0;
-      }
-    },
     columns: {
       type: Array, default() {
         return [{name: "表格加载中...", key: ''}]
@@ -31,6 +26,11 @@ Vue.component('jopper-table', {
         return {};
       }
     }
+  },
+  data: function () {
+    return {
+      totalPage: 0
+    };
   },
   template: `<div class="jopper-table">
   <table class="table">
@@ -82,8 +82,10 @@ Vue.component('jopper-table', {
       let queryUrl = 'resources/' + this.resource + "/query";
       axios.get(queryUrl, {params: vm.query})
           .then(function (response) {
-            Jopper.setArray(vm, 'rows', response.data.list);
-            vm.totalPage = response.data.totalPage || 0;
+            Jopper.handleResponse(response, function (data) {
+              Jopper.setArray(vm, 'rows', data.list);
+              vm.totalPage = data.totalPage || 0;
+            });
           })
     },
     hasOperations() {

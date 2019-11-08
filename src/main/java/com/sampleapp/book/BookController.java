@@ -1,6 +1,6 @@
-package com.hyd.jopper.book;
+package com.sampleapp.book;
 
-import com.hyd.jopper.meta.ResourceList;
+import com.hyd.jopper.meta.Resp;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class BookController {
     private CategoryRepository categoryRepository;
 
     @GetMapping("/query")
-    public ResourceList queryBooks(HttpServletRequest request) {
+    public Resp queryBooks(HttpServletRequest request) {
 
         String titleKeyword = request.getParameter("title");
         String category = request.getParameter("category");
@@ -28,6 +28,8 @@ public class BookController {
             book.setCategoryName(categoryName);
         });
 
-        return new ResourceList<Book>().setList(bookList).setTotalPage(5);
+        return Resp.success()
+            .append("list", bookList)
+            .append("totalPage", 5);
     }
 }

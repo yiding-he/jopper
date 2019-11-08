@@ -1,12 +1,12 @@
-package com.hyd.jopper;
+package com.sampleapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JopperApplication {
-
+public class SampleApplication {
     public static void main(String[] args) {
-        SpringApplication.run(JopperApplication.class, args);
+        SpringApplication.run(SampleApplication.class, args);
     }
 }
+

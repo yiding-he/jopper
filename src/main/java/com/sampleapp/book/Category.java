@@ -1,4 +1,4 @@
-package com.hyd.jopper.book;
+package com.sampleapp.book;
 
 import com.hyd.jopper.meta.NamedKey;
 import lombok.Data;
